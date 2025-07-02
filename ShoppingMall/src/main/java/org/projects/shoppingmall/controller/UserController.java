@@ -23,4 +23,14 @@ public class UserController {
     return userService.register(userInfo);
   }
 
+  @PostMapping("/phoneLogin")
+  public String phoneLogin(@RequestParam String phone, @RequestParam String password) {
+    return userService.phoneLogin(phone, password);
+  }
+
+  @PostMapping("/phoneRegister")
+  public String phoneRegister(@RequestBody UserInfo userInfo) {
+    return userService.phoneRegister(userInfo);
+  }
+
 }

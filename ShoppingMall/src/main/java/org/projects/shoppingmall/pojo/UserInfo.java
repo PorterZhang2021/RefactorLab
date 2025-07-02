@@ -20,6 +20,9 @@ public class UserInfo {
   @Column(nullable = false)
   private String userName;
 
+  @Column
+  private String phone;
+
   @Column(nullable = false)
   private String password;
 

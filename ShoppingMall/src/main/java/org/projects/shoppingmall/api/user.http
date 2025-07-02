@@ -1,4 +1,4 @@
-### create user
+### create user by userName
 POST http://localhost:8081/register
 Content-Type: application/json
 
@@ -8,9 +8,27 @@ Content-Type: application/json
   "userEmail": "testUser@test.com"
 }
 
-### login user
+
+### create user by Phone
+POST http://localhost:8081/phoneRegister
+Content-Type: application/json
+
+{
+  "phone": "17752340981",
+  "password": "pwd",
+  "userEmail": "17752340981@phone.com"
+}
+
+### login user by userName
 POST http://localhost:8081/login
 Content-Type: application/x-www-form-urlencoded
 
 account = testUser &
+password = pwd
+
+### login user by Phone
+POST http://localhost:8081/phoneLogin
+Content-Type: application/x-www-form-urlencoded
+
+phone = 17752340981 &
 password = pwd
