@@ -1,6 +1,9 @@
 package org.projects.shoppingmall.bridge.function;
 
 import java.util.Date;
+import javax.annotation.PostConstruct;
+import org.projects.shoppingmall.bridge.abst.AbstractRegisterLoginComponent;
+import org.projects.shoppingmall.bridge.abst.factory.RegisterLoginComponentFactory;
 import org.projects.shoppingmall.pojo.UserInfo;
 import org.projects.shoppingmall.pojo.dto.LoginRequest;
 import org.projects.shoppingmall.repository.UserRepository;
@@ -8,9 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RegisterLoginByDefault implements RegisterLoginFuncInterface {
+public class RegisterLoginByDefault  implements RegisterLoginFuncInterface {
   @Autowired
   private UserRepository userRepository;
+
+  @PostConstruct
+  private void initFuncMap() {
+    RegisterLoginComponentFactory.funcMap.put("Default", this);
+  }
 
   @Override
   public String login(LoginRequest loginRequest) {
