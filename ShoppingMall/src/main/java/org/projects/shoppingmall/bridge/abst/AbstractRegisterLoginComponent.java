@@ -33,4 +33,8 @@ public abstract class AbstractRegisterLoginComponent {
   public boolean checkUserExists(UserInfo userInfo) {
     throw new UnsupportedOperationException("checkUserExists() is not implemented");
   }
+
+  public String validUserLogin(UserInfo userInfo) {
+    throw new UnsupportedOperationException("validUserLogin() is not implemented");
+  }
 }

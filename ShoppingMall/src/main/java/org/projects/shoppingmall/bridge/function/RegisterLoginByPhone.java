@@ -24,6 +24,11 @@ public class RegisterLoginByPhone implements RegisterLoginFuncInterface {
   @Override
   public String login(LoginRequest loginRequest) {
     UserInfo userInfo = userRepository.findByPhoneAndPassword(loginRequest.getPhone(), loginRequest.getPassword());
+    return validUserLogin(userInfo);
+  }
+
+  @Override
+  public String validUserLogin(UserInfo userInfo) {
     if (userInfo == null) {
       return "phone / password error";
     }

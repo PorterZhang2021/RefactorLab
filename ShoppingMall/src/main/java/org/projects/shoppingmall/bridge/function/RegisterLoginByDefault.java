@@ -2,7 +2,6 @@ package org.projects.shoppingmall.bridge.function;
 
 import java.util.Date;
 import javax.annotation.PostConstruct;
-import org.projects.shoppingmall.bridge.abst.AbstractRegisterLoginComponent;
 import org.projects.shoppingmall.bridge.abst.factory.RegisterLoginComponentFactory;
 import org.projects.shoppingmall.pojo.UserInfo;
 import org.projects.shoppingmall.pojo.dto.LoginRequest;
@@ -24,6 +23,11 @@ public class RegisterLoginByDefault  implements RegisterLoginFuncInterface {
   public String login(LoginRequest loginRequest) {
     UserInfo userInfo =
         userRepository.findByUserNameAndPassword(loginRequest.getUserName(), loginRequest.getPassword());
+    return validUserLogin(userInfo);
+  }
+
+  @Override
+  public String validUserLogin(UserInfo userInfo) {
     if (userInfo == null) {
       return "account / password error";
     }

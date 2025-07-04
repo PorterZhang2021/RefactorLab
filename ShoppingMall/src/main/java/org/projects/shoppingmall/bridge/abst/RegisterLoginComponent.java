@@ -24,4 +24,9 @@ public class RegisterLoginComponent extends AbstractRegisterLoginComponent {
     return funcInterface.checkUserExists(userInfo);
   }
 
+  @Override
+  public String validUserLogin(UserInfo userInfo) {
+    return funcInterface.validUserLogin(userInfo);
+  }
+
 }
