@@ -1,5 +1,7 @@
 package org.projects.shoppingmall.controller;
 
+import org.projects.shoppingmall.pojo.dto.AddProductRequest;
+import org.projects.shoppingmall.pojo.dto.DeleteProductRequest;
 import org.projects.shoppingmall.pojo.dto.LoginRequest;
 import org.projects.shoppingmall.pojo.write.Product;
 import org.projects.shoppingmall.service.ProductService;
@@ -19,5 +21,15 @@ public class ProductController {
   @PostMapping("/fetchAllItems")
   public Product fetchAllItems() {
     return productService.fetchAllItems();
+  }
+
+  @PostMapping("/addItem")
+  public Product addItem(@RequestBody AddProductRequest addProductRequest) {
+    return productService.addItem(addProductRequest);
+  }
+
+  @PostMapping("/deleteItem")
+  public Product deleteItem(@RequestBody DeleteProductRequest deleteProductRequest) {
+    return productService.deleteItem(deleteProductRequest);
   }
 }

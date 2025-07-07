@@ -14,7 +14,8 @@ import lombok.Data;
 public class ProductItem {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(insertable = false, updatable = false)
   private int id;
 
   @Column(nullable = false)

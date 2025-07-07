@@ -1,1 +1,19 @@
+### fetch All items
 POST http://localhost:8081/product/fetchAllItems
+
+### add item
+POST http://localhost:8081/product/addItem
+Content-Type: application/json
+
+{
+  "name": "ROG笔记本电脑",
+  "pid": 5
+}
+
+### delete item
+POST http://localhost:8081/product/deleteItem
+Content-Type: application/json
+
+{
+  "name": "ROG笔记本电脑"
+}

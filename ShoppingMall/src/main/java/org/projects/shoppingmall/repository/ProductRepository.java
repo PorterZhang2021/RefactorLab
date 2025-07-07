@@ -14,5 +14,6 @@ public interface ProductRepository extends JpaRepository<ProductItem, Integer> {
 
   ProductItem findById(int id);
 
+
   List<ProductItem> findAll();
 }

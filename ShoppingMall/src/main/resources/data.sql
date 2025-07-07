@@ -9,3 +9,5 @@ values (1, '商城', 0),
        (8, '教育类', 3),
        (9, '科普类', 3),
        (10, '九年义务教育书籍', 8);
+
+ALTER TABLE product_item ALTER COLUMN id RESTART WITH (SELECT MAX(id) + 1 FROM product_item);
