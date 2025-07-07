@@ -8,6 +8,8 @@ import org.projects.shoppingmall.pojo.ProductItem;
 import org.projects.shoppingmall.pojo.write.Product;
 import org.projects.shoppingmall.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,13 +17,26 @@ public class ProductService {
   @Autowired
   private ProductRepository productRepository;
 
+  @Autowired
+  private CacheManager cacheManager;
+
   public Product fetchAllItems() {
-    List<ProductItem> productItems = productRepository.findAll();
-    Map<Integer, Product> productMap = new HashMap<>();
+
 
     // 实际当中这个部分还有对应的缓存逻辑，但是这里只有构建新列表的逻辑，把之前的省略了
+    Cache defaultCache = cacheManager.getCache("default");
+    if (defaultCache.get("productTree") != null) {
+      return defaultCache.get("productTree", Product.class);
+    }
 
+    Product product = buildProductTree();
+    defaultCache.put("productTree", product);
+    return product;
+  }
 
+  private Product buildProductTree() {
+    List<ProductItem> productItems = productRepository.findAll();
+    Map<Integer, Product> productMap = new HashMap<>();
     for (ProductItem productItem : productItems) {
       Product product = Product.builder()
           .id(productItem.getId())
